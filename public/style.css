@@ -1,5 +1,21 @@
+body {
+    background-color: brown;
+
+}
+
+#refresh {
+    background-color: red;
+}
+
+.intro {
+    font-family: Arial;
+    font-size: 25px;
+}
+
+
+
 #title {
-    color : red;
+    color : rgb(78, 3, 3);
     font-family: Arial;
     font-size: 50px;
 }
@@ -7,26 +23,30 @@
 #eastWest {
     font-family: Verdana;
     font-size: 50px;
-    color: yellow;
+    color: green;
 }
 
 #northSouth {
     font-family: Verdana;
     font-size: 50px;
-    color: rgb(100, 100, 15);
+    color: green;
 }
 
 #geo {
- color : rgb(0, 217, 255);
+ color : black;
  padding: 10px;
  font-family: Arial;
 }
 
 #date {
-color : yellow;
+color :rgb(5, 5, 73);
 }
 
 #time {
     font-size: 24px;
-    color: green;
+    color: red;
+}
+
+#currentTime {
+    font-size: 50px;
 }
