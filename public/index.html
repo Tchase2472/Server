@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Exercise</title>
+    
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <script>
+        //Test to see if geolocation is supported
+        if('geolocation' in navigator){
+            console.log('Geolocation is available')
+                       
+            navigator.geolocation.getCurrentPosition(async position => {
+            console.log(position);
+        
+        //Put coordinate data on the page    
+            const lat = position.coords.latitude;
+            const long = position.coords.longitude;
+            const timestamp = position.coords.timestamp;
+            document.getElementById('latitude').textContent = long;
+            document.getElementById('longitude').textContent = long;
+            
+            
+        
+        // Create a container to store the data        
+            const data = {lat, long};
+            
+        //Package up data 
+            const options = {
+                method : 'POST',
+                headers : {
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify(data)
+            };
+
+            const response = await fetch('/api', options); 
+            const json = await response.json();  
+            console.log(json); 
+            });
+            }else{
+            console.log('Geolocation is not available')
+        };
+        
+        
+    </script>
+    <script>
+
+        getTheData();
+        async function getTheData() {
+        const response = await fetch('/api');
+        const data = await response.json();
+        console.log(data);
+
+        for (item of data) {
+            const root = document.createElement('div');
+            const geo = document.createElement('div');
+            const date = document.createElement('div');
+            geo.setAttribute("id", "geo");
+            date.setAttribute("id", "date");
+            geo.textContent = `The latitude and longitude is: ${item.lat }, ${item.long}`;
+            const dateString = new Date(item.timestamp).toLocaleString();
+            date.textContent = `At this time: ${dateString}`;
+            root.append(geo, date);
+            document.body.append(root);
+
+        }
+        }
+        
+
+    </script>
+    <p id="title">Geolocation Page</p>
+    <p id="eastWest">Your current latitude is: <span id="latitude"></span>&deg;<br /></p>
+    <p id="northSouth">Your current longitude is: <span id="longitude"></span>&deg;</p>
+    The current time is: 
+    <input id="time"></input>
+    
+    <button id="refresh" type="button">Refresh Page</button>
+   
+    <script>
+         let button = document.getElementById("refresh");
+       button.addEventListener('click', () =>{
+           location.reload();
+       });
+function showTime (){
+       var today = new Date();
+       var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+       document.getElementById('time').value = time; 
+       };
+
+       setInterval(showTime, 1000);
+        
+    </script>
+
+   
+
+
+    
+</body>
+</html>

@@ -1,0 +1,32 @@
+#title {
+    color : red;
+    font-family: Arial;
+    font-size: 50px;
+}
+
+#eastWest {
+    font-family: Verdana;
+    font-size: 50px;
+    color: yellow;
+}
+
+#northSouth {
+    font-family: Verdana;
+    font-size: 50px;
+    color: rgb(100, 100, 15);
+}
+
+#geo {
+ color : rgb(0, 217, 255);
+ padding: 10px;
+ font-family: Arial;
+}
+
+#date {
+color : yellow;
+}
+
+#time {
+    font-size: 24px;
+    color: green;
+}
